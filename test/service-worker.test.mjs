@@ -5,10 +5,13 @@ import vm from "node:vm";
 
 test("serves cached audio byte ranges while offline", async () => {
   const listeners = new Map();
-  const audio = Uint8Array.from([0, 1, 2, 3]);
+  const audio = await readFile(
+    new URL("../public/audio/white-noise-10h.mp3", import.meta.url),
+  );
   let matchedUrl;
   const context = {
     Request,
+    ReadableStream,
     Response,
     URL,
     fetch: () => Promise.reject(new Error("offline")),
@@ -16,7 +19,7 @@ test("serves cached audio byte ranges while offline", async () => {
       match: (url) => {
         matchedUrl = url;
         return Promise.resolve(
-          new Response(audio, { headers: { "Content-Type": "audio/webm" } }),
+          new Response(audio, { headers: { "Content-Type": "audio/mpeg" } }),
         );
       },
     },
@@ -36,8 +39,8 @@ test("serves cached audio byte ranges while offline", async () => {
   /** @type {Promise<Response> | undefined} */
   let responsePromise;
   listeners.get("fetch")({
-    request: new Request("https://example.com/audio/white-noise-10h.weba", {
-      headers: { Range: "bytes=1-2" },
+    request: new Request("https://example.com/audio/white-noise-10h.mp3", {
+      headers: { Range: `bytes=${audio.length - 2}-${audio.length + 3}` },
     }),
     respondWith: (promise) => {
       responsePromise = promise;
@@ -46,12 +49,17 @@ test("serves cached audio byte ranges while offline", async () => {
 
   assert.ok(responsePromise);
   const response = await responsePromise;
-  assert.equal(matchedUrl, "/audio/white-noise-10h.weba");
+  assert.equal(matchedUrl, "/audio/white-noise-10h.mp3");
   assert.equal(response.status, 206);
-  assert.equal(response.headers.get("Content-Range"), "bytes 1-2/4");
-  assert.equal(response.headers.get("Content-Type"), "audio/webm");
+  const totalLength = audio.length * 1232;
+  assert.equal(
+    response.headers.get("Content-Range"),
+    `bytes ${audio.length - 2}-${audio.length + 3}/${totalLength}`,
+  );
+  assert.equal(response.headers.get("Content-Type"), "audio/mpeg");
+  assert.ok((totalLength * 8) / 64_000 >= 10 * 60 * 60);
   assert.deepEqual(
     new Uint8Array(await response.arrayBuffer()),
-    Uint8Array.from([1, 2]),
+    Uint8Array.from([...audio.subarray(-2), ...audio.subarray(0, 4)]),
   );
 });

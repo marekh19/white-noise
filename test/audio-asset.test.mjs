@@ -2,14 +2,15 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
-test("ships at least ten hours of continuous audio", async () => {
+test("ships a compact, independently decodable MP3 loop", async () => {
   const audio = await readFile(
-    new URL("../public/audio/white-noise-10h.weba", import.meta.url),
+    new URL("../public/audio/white-noise-10h.mp3", import.meta.url),
   );
-  const durationMarker = Buffer.from([0x44, 0x89, 0x88]);
-  const durationOffset = audio.indexOf(durationMarker) + durationMarker.length;
 
-  assert.ok(durationOffset >= durationMarker.length);
-  assert.ok(audio.readDoubleBE(durationOffset) / 1000 >= 10 * 60 * 60);
-  assert.ok(audio.byteLength <= 25 * 1024 * 1024);
+  assert.ok(audio.byteLength < 500 * 1024);
+  assert.equal(audio.byteLength % 288, 0);
+  for (let offset = 0; offset < audio.byteLength; offset += 288) {
+    assert.equal(audio[offset], 0xff);
+    assert.equal(audio[offset + 1] & 0xe0, 0xe0);
+  }
 });

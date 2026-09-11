@@ -17,6 +17,22 @@ for (const player of players) {
   audio.controls = false;
   player.setAttribute("data-enhanced", "true");
 
+  const continuousAudioReady =
+    !("serviceWorker" in navigator) || navigator.serviceWorker.controller
+      ? Promise.resolve()
+      : Promise.race([
+          new Promise<void>((resolve) =>
+            navigator.serviceWorker.addEventListener(
+              "controllerchange",
+              () => resolve(),
+              { once: true },
+            ),
+          ),
+          new Promise<void>((resolve) => setTimeout(resolve, 3000)),
+        ]).then(() => {
+          if (navigator.serviceWorker.controller) audio.load();
+        });
+
   const setPlaying = (isPlaying: boolean) => {
     player.setAttribute("data-playing", String(isPlaying));
     button.setAttribute("aria-pressed", String(isPlaying));
@@ -29,6 +45,7 @@ for (const player of players) {
     button.disabled = true;
     status.textContent = "Starting…";
     try {
+      await continuousAudioReady;
       await audio.play();
     } catch {
       button.disabled = false;

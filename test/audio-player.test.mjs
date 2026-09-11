@@ -68,6 +68,7 @@ test("updates the player through playback, pause, and failure", async () => {
   assert.equal(player.attributes.get("data-enhanced"), "true");
 
   button.dispatch("click");
+  await Promise.resolve();
   assert.equal(player.attributes.get("data-playing"), "true");
   assert.equal(button.attributes.get("aria-pressed"), "true");
   assert.equal(label.textContent, "Pause white noise");
@@ -80,6 +81,7 @@ test("updates the player through playback, pause, and failure", async () => {
 
   audio.rejectPlayback = true;
   button.dispatch("click");
+  await Promise.resolve();
   await Promise.resolve();
   assert.equal(button.disabled, false);
   assert.equal(
