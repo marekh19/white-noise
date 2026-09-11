@@ -1,7 +1,10 @@
 // Bump this when a precached file changes so existing visitors receive the update.
 const CACHE_PREFIX = "baby-sleep-";
-const CACHE_NAME = `${CACHE_PREFIX}v2`;
-const AUDIO_URL = "/audio/white-noise.m4a";
+const CACHE_NAME = `${CACHE_PREFIX}v3`;
+const AUDIO_URLS = new Set([
+  "/audio/white-noise-10h.webm",
+  "/audio/white-noise.m4a",
+]);
 const PRECACHE = [
   "/",
   "/manifest.webmanifest",
@@ -12,7 +15,7 @@ const PRECACHE = [
   "/icons/icon-192.png",
   "/icons/icon-512.png",
   "/icons/icon-maskable-512.png",
-  AUDIO_URL,
+  ...AUDIO_URLS,
 ];
 
 self.addEventListener("install", (event) => {
@@ -39,8 +42,8 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-const rangedAudioResponse = async (request) => {
-  const response = await caches.match(AUDIO_URL);
+const rangedAudioResponse = async (request, audioUrl) => {
+  const response = await caches.match(audioUrl);
   if (!response) return fetch(request);
   const range = request.headers.get("range");
   if (!range) return response;
@@ -75,8 +78,8 @@ self.addEventListener("fetch", (event) => {
   const request = event.request;
   const url = new URL(request.url);
   if (request.method !== "GET" || url.origin !== self.location.origin) return;
-  if (url.pathname === AUDIO_URL) {
-    event.respondWith(rangedAudioResponse(request));
+  if (AUDIO_URLS.has(url.pathname)) {
+    event.respondWith(rangedAudioResponse(request, url.pathname));
     return;
   }
   if (request.mode === "navigate") {

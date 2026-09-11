@@ -6,16 +6,19 @@ import vm from "node:vm";
 test("serves cached audio byte ranges while offline", async () => {
   const listeners = new Map();
   const audio = Uint8Array.from([0, 1, 2, 3]);
+  let matchedUrl;
   const context = {
     Request,
     Response,
     URL,
     fetch: () => Promise.reject(new Error("offline")),
     caches: {
-      match: () =>
-        Promise.resolve(
-          new Response(audio, { headers: { "Content-Type": "audio/mp4" } }),
-        ),
+      match: (url) => {
+        matchedUrl = url;
+        return Promise.resolve(
+          new Response(audio, { headers: { "Content-Type": "audio/webm" } }),
+        );
+      },
     },
     self: {
       location: { origin: "https://example.com" },
@@ -33,7 +36,7 @@ test("serves cached audio byte ranges while offline", async () => {
   /** @type {Promise<Response> | undefined} */
   let responsePromise;
   listeners.get("fetch")({
-    request: new Request("https://example.com/audio/white-noise.m4a", {
+    request: new Request("https://example.com/audio/white-noise-10h.webm", {
       headers: { Range: "bytes=1-2" },
     }),
     respondWith: (promise) => {
@@ -43,8 +46,10 @@ test("serves cached audio byte ranges while offline", async () => {
 
   assert.ok(responsePromise);
   const response = await responsePromise;
+  assert.equal(matchedUrl, "/audio/white-noise-10h.webm");
   assert.equal(response.status, 206);
   assert.equal(response.headers.get("Content-Range"), "bytes 1-2/4");
+  assert.equal(response.headers.get("Content-Type"), "audio/webm");
   assert.deepEqual(
     new Uint8Array(await response.arrayBuffer()),
     Uint8Array.from([1, 2]),
