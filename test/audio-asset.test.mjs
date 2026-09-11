@@ -4,7 +4,7 @@ import test from "node:test";
 
 test("ships a compact, independently decodable MP3 loop", async () => {
   const audio = await readFile(
-    new URL("../public/audio/white-noise-10h.mp3", import.meta.url),
+    new URL("../public/audio/white-noise-24h.mp3", import.meta.url),
   );
 
   assert.ok(audio.byteLength < 500 * 1024);

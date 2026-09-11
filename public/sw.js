@@ -1,9 +1,9 @@
 // Bump this when a precached file changes so existing visitors receive the update.
 const CACHE_PREFIX = "baby-sleep-";
-const CACHE_NAME = `${CACHE_PREFIX}v5`;
-const AUDIO_URL = "/audio/white-noise-10h.mp3";
+const CACHE_NAME = `${CACHE_PREFIX}v6`;
+const AUDIO_URL = "/audio/white-noise-24h.mp3";
 // Repeating complete MP3 frames keeps one native media timeline without loop gaps.
-const AUDIO_REPEAT_COUNT = 1232;
+const AUDIO_REPEAT_COUNT = 2885;
 const PRECACHE = [
   "/",
   "/manifest.webmanifest",

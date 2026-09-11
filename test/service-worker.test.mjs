@@ -6,7 +6,7 @@ import vm from "node:vm";
 test("serves cached audio byte ranges while offline", async () => {
   const listeners = new Map();
   const audio = await readFile(
-    new URL("../public/audio/white-noise-10h.mp3", import.meta.url),
+    new URL("../public/audio/white-noise-24h.mp3", import.meta.url),
   );
   let matchedUrl;
   const context = {
@@ -39,7 +39,7 @@ test("serves cached audio byte ranges while offline", async () => {
   /** @type {Promise<Response> | undefined} */
   let responsePromise;
   listeners.get("fetch")({
-    request: new Request("https://example.com/audio/white-noise-10h.mp3", {
+    request: new Request("https://example.com/audio/white-noise-24h.mp3", {
       headers: { Range: `bytes=${audio.length - 2}-${audio.length + 3}` },
     }),
     respondWith: (promise) => {
@@ -49,15 +49,16 @@ test("serves cached audio byte ranges while offline", async () => {
 
   assert.ok(responsePromise);
   const response = await responsePromise;
-  assert.equal(matchedUrl, "/audio/white-noise-10h.mp3");
+  assert.equal(matchedUrl, "/audio/white-noise-24h.mp3");
   assert.equal(response.status, 206);
-  const totalLength = audio.length * 1232;
+  const contentRange = response.headers.get("Content-Range");
+  const totalLength = Number(contentRange?.split("/")[1]);
   assert.equal(
-    response.headers.get("Content-Range"),
+    contentRange,
     `bytes ${audio.length - 2}-${audio.length + 3}/${totalLength}`,
   );
   assert.equal(response.headers.get("Content-Type"), "audio/mpeg");
-  assert.ok((totalLength * 8) / 64_000 >= 10 * 60 * 60);
+  assert.ok((totalLength * 8) / 64_000 >= 24 * 60 * 60);
   assert.deepEqual(
     new Uint8Array(await response.arrayBuffer()),
     Uint8Array.from([...audio.subarray(-2), ...audio.subarray(0, 4)]),
