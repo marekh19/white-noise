@@ -1,8 +1,8 @@
 // Bump this when a precached file changes so existing visitors receive the update.
 const CACHE_PREFIX = "baby-sleep-";
-const CACHE_NAME = `${CACHE_PREFIX}v3`;
+const CACHE_NAME = `${CACHE_PREFIX}v4`;
 const AUDIO_URLS = new Set([
-  "/audio/white-noise-10h.webm",
+  "/audio/white-noise-10h.weba",
   "/audio/white-noise.m4a",
 ]);
 const PRECACHE = [

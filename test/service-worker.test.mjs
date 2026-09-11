@@ -36,7 +36,7 @@ test("serves cached audio byte ranges while offline", async () => {
   /** @type {Promise<Response> | undefined} */
   let responsePromise;
   listeners.get("fetch")({
-    request: new Request("https://example.com/audio/white-noise-10h.webm", {
+    request: new Request("https://example.com/audio/white-noise-10h.weba", {
       headers: { Range: "bytes=1-2" },
     }),
     respondWith: (promise) => {
@@ -46,7 +46,7 @@ test("serves cached audio byte ranges while offline", async () => {
 
   assert.ok(responsePromise);
   const response = await responsePromise;
-  assert.equal(matchedUrl, "/audio/white-noise-10h.webm");
+  assert.equal(matchedUrl, "/audio/white-noise-10h.weba");
   assert.equal(response.status, 206);
   assert.equal(response.headers.get("Content-Range"), "bytes 1-2/4");
   assert.equal(response.headers.get("Content-Type"), "audio/webm");

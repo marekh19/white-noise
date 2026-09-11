@@ -4,7 +4,7 @@ import test from "node:test";
 
 test("ships at least ten hours of continuous audio", async () => {
   const audio = await readFile(
-    new URL("../public/audio/white-noise-10h.webm", import.meta.url),
+    new URL("../public/audio/white-noise-10h.weba", import.meta.url),
   );
   const durationMarker = Buffer.from([0x44, 0x89, 0x88]);
   const durationOffset = audio.indexOf(durationMarker) + durationMarker.length;
