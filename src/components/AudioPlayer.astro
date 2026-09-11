@@ -1,0 +1,167 @@
+<div class="audio-player" data-audio-player>
+  <div class="audio-player__orbit" aria-hidden="true">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div class="audio-player__surface">
+    <p class="audio-player__label">White noise</p>
+    <audio controls loop preload="auto" data-audio>
+      <source src="/audio/white-noise.m4a" type="audio/mp4" />
+      Your browser does not support audio playback.
+    </audio>
+    <div class="audio-player__custom">
+      <button
+        type="button"
+        class="audio-player__button"
+        data-audio-toggle
+        aria-pressed="false"
+      >
+        <svg class="play-icon" viewBox="0 0 40 40" aria-hidden="true">
+          <path d="m15 10 16 10-16 10Z" />
+        </svg>
+        <svg class="pause-icon" viewBox="0 0 40 40" aria-hidden="true">
+          <path d="M13 10h5v20h-5zm9 0h5v20h-5z" />
+        </svg>
+        <span data-audio-label>Play white noise</span>
+      </button>
+      <p class="audio-player__status" data-audio-status aria-live="polite">
+        Ready when you are
+      </p>
+    </div>
+  </div>
+  <p class="audio-player__offline">Available offline after your first visit</p>
+</div>
+
+<script>
+  import "../scripts/audio-player";
+</script>
+
+<style>
+  .audio-player {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: min(100%, 25rem);
+    aspect-ratio: 1;
+  }
+  .audio-player__orbit,
+  .audio-player__orbit span {
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgb(217 201 255 / 13%);
+    border-radius: 50%;
+  }
+  .audio-player__orbit span:nth-child(1) {
+    inset: 9%;
+  }
+  .audio-player__orbit span:nth-child(2) {
+    inset: 18%;
+  }
+  .audio-player__orbit span:nth-child(3) {
+    inset: 27%;
+  }
+  .audio-player[data-playing="true"] .audio-player__orbit span {
+    animation: breathe 4s ease-in-out infinite;
+  }
+  .audio-player[data-playing="true"] .audio-player__orbit span:nth-child(2) {
+    animation-delay: -1.3s;
+  }
+  .audio-player[data-playing="true"] .audio-player__orbit span:nth-child(3) {
+    animation-delay: -2.6s;
+  }
+  .audio-player__surface {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 58%;
+    aspect-ratio: 1;
+    border: 1px solid rgb(245 239 217 / 18%);
+    border-radius: 50%;
+    background: linear-gradient(145deg, #292b4a, #171a31);
+    box-shadow:
+      0 1.5rem 4rem rgb(0 0 0 / 34%),
+      inset 0 1px rgb(255 255 255 / 8%);
+  }
+  .audio-player__label {
+    position: absolute;
+    top: 17%;
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  audio {
+    width: 82%;
+    height: 3rem;
+  }
+  .audio-player__custom {
+    display: none;
+    place-items: center;
+  }
+  .audio-player[data-enhanced="true"] audio {
+    display: none;
+  }
+  .audio-player[data-enhanced="true"] .audio-player__custom {
+    display: grid;
+  }
+  .audio-player__button {
+    display: grid;
+    place-items: center;
+    width: 8.5rem;
+    height: 8.5rem;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--moon);
+    cursor: pointer;
+  }
+  .audio-player__button svg {
+    width: 3.25rem;
+    fill: currentColor;
+  }
+  .audio-player__button span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .pause-icon,
+  .audio-player[data-playing="true"] .play-icon {
+    display: none;
+  }
+  .audio-player[data-playing="true"] .pause-icon {
+    display: block;
+  }
+  .audio-player__button:disabled {
+    cursor: wait;
+    opacity: 0.55;
+  }
+  .audio-player__status {
+    position: absolute;
+    bottom: 16%;
+    margin: 0;
+    color: var(--mist);
+    font-size: 0.72rem;
+  }
+  .audio-player__offline {
+    position: absolute;
+    bottom: -0.5rem;
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+  }
+  @keyframes breathe {
+    50% {
+      border-color: rgb(217 201 255 / 32%);
+      transform: scale(1.025);
+    }
+  }
+</style>

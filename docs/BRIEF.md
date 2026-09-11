@@ -16,17 +16,17 @@ The MVP is a single-page website with a small amount of informational content an
 
 The MVP should:
 
-* Play continuous white noise.
-* Continue playing when the device screen is locked, where supported by the browser.
-* Work offline after the first successful visit.
-* Load extremely quickly.
-* Have a very small JavaScript footprint.
-* Be usable without installing an application.
-* Work particularly well in normal mobile Safari on iOS.
-* Support installation as a PWA where useful.
-* Be SEO-friendly.
-* Have a polished, calming visual design aimed at parents of babies.
-* Avoid unnecessary application complexity.
+- Play continuous white noise.
+- Continue playing when the device screen is locked, where supported by the browser.
+- Work offline after the first successful visit.
+- Load extremely quickly.
+- Have a very small JavaScript footprint.
+- Be usable without installing an application.
+- Work particularly well in normal mobile Safari on iOS.
+- Support installation as a PWA where useful.
+- Be SEO-friendly.
+- Have a polished, calming visual design aimed at parents of babies.
+- Avoid unnecessary application complexity.
 
 The product should feel closer to a tiny native utility than to a traditional content-heavy website.
 
@@ -34,20 +34,20 @@ The product should feel closer to a tiny native utility than to a traditional co
 
 The MVP will not include:
 
-* User accounts.
-* Authentication.
-* Backend services.
-* Analytics-heavy personalization.
-* Multiple sound libraries.
-* Sound mixing.
-* Saved presets.
-* Cloud synchronization.
-* Sleep tracking.
-* Payments or subscriptions.
-* Native iOS or Android applications.
-* Complex application state.
-* Client-side routing.
-* A JavaScript UI framework.
+- User accounts.
+- Authentication.
+- Backend services.
+- Analytics-heavy personalization.
+- Multiple sound libraries.
+- Sound mixing.
+- Saved presets.
+- Cloud synchronization.
+- Sleep tracking.
+- Payments or subscriptions.
+- Native iOS or Android applications.
+- Complex application state.
+- Client-side routing.
+- A JavaScript UI framework.
 
 These may be reconsidered later if actual product requirements justify them.
 
@@ -73,24 +73,24 @@ The website will contain one main page.
 
 Suggested structure:
 
-* Header / minimal branding.
-* Hero section.
-* Primary white-noise player.
-* Very short explanation of what the tool does.
-* A small section describing why parents use white noise.
-* Basic usage guidance.
-* FAQ.
-* Footer.
-* Privacy / legal links if required.
+- Header / minimal branding.
+- Hero section.
+- Primary white-noise player.
+- Very short explanation of what the tool does.
+- A small section describing why parents use white noise.
+- Basic usage guidance.
+- FAQ.
+- Footer.
+- Privacy / legal links if required.
 
 The interactive player remains the dominant element.
 
 Content exists primarily to:
 
-* explain the product,
-* establish trust,
-* provide useful context,
-* improve search-engine discoverability.
+- explain the product,
+- establish trust,
+- provide useful context,
+- improve search-engine discoverability.
 
 The page must not become visually or structurally dominated by SEO content.
 
@@ -102,25 +102,25 @@ Parents and caregivers of babies and young children.
 
 The design should communicate:
 
-* calm,
-* safety,
-* softness,
-* simplicity,
-* nighttime comfort,
-* trustworthiness.
+- calm,
+- safety,
+- softness,
+- simplicity,
+- nighttime comfort,
+- trustworthiness.
 
 The interface should avoid the visual language of productivity software, technical tools, or aggressively commercial mobile applications.
 
 Possible visual characteristics:
 
-* generous spacing,
-* soft typography,
-* restrained palette,
-* subtle rounded shapes,
-* low visual noise,
-* excellent mobile layout,
-* strong contrast where required for accessibility,
-* subtle animation only when it improves feedback.
+- generous spacing,
+- soft typography,
+- restrained palette,
+- subtle rounded shapes,
+- low visual noise,
+- excellent mobile layout,
+- strong contrast where required for accessibility,
+- subtle animation only when it improves feedback.
 
 The player should remain obvious and easy to operate in low-light conditions or while holding a child.
 
@@ -136,13 +136,13 @@ The application will be generated primarily as static HTML.
 
 Astro is responsible for:
 
-* page structure,
-* static rendering,
-* reusable layout components,
-* SEO metadata,
-* content sections,
-* scoped CSS,
-* build-time output.
+- page structure,
+- static rendering,
+- reusable layout components,
+- SEO metadata,
+- content sections,
+- scoped CSS,
+- build-time output.
 
 JavaScript will be used only where interactivity is required.
 
@@ -154,19 +154,19 @@ Astro matches the shape of the product very closely.
 
 The application is approximately:
 
-* 80% static content and layout,
-* 20% interactive behavior.
+- 80% static content and layout,
+- 20% interactive behavior.
 
 Astro allows almost the entire page to be rendered as static HTML while JavaScript is added only where needed.
 
 This provides:
 
-* minimal JavaScript shipped to the browser,
-* excellent first-load performance,
-* simple SEO,
-* straightforward componentization,
-* easy static hosting,
-* no unnecessary client-side application runtime.
+- minimal JavaScript shipped to the browser,
+- excellent first-load performance,
+- simple SEO,
+- straightforward componentization,
+- easy static hosting,
+- no unnecessary client-side application runtime.
 
 Astro also leaves room to introduce an interactive framework island later if the player becomes significantly more complex.
 
@@ -176,11 +176,11 @@ That migration would not require rewriting the surrounding site.
 
 SvelteKit would provide capabilities that the MVP does not currently need, including:
 
-* application-oriented routing,
-* server-side application primitives,
-* loaders and server/client data flows,
-* application lifecycle abstractions,
-* a larger framework surface area.
+- application-oriented routing,
+- server-side application primitives,
+- loaders and server/client data flows,
+- application lifecycle abstractions,
+- a larger framework surface area.
 
 The product does not currently justify this complexity.
 
@@ -193,7 +193,7 @@ Svelte would be lightweight and technically suitable, but the current interactiv
 For the MVP, the interactive model is effectively:
 
 ```ts
-type PlaybackState = 'playing' | 'paused'
+type PlaybackState = "playing" | "paused";
 ```
 
 A framework would solve a problem that currently does not exist.
@@ -206,12 +206,12 @@ A plain Vite + TypeScript application would also be viable.
 
 However, Astro offers a better structure for:
 
-* SEO content,
-* reusable static components,
-* layouts,
-* future informational pages,
-* metadata,
-* content expansion.
+- SEO content,
+- reusable static components,
+- layouts,
+- future informational pages,
+- metadata,
+- content expansion.
 
 It provides these benefits while still allowing the interactive portion of the site to remain essentially vanilla TypeScript.
 
@@ -228,9 +228,7 @@ Astro will render the player markup directly into the HTML.
 For example:
 
 ```html
-<button data-audio-toggle>
-  Play white noise
-</button>
+<button data-audio-toggle>Play white noise</button>
 ```
 
 JavaScript then enhances that markup with playback functionality.
@@ -239,22 +237,22 @@ JavaScript should not be responsible for rendering the entire application shell.
 
 This provides several benefits:
 
-* extremely fast first render,
-* stable page layout,
-* good SEO,
-* resilience to JavaScript failures,
-* simpler architecture,
-* minimal runtime work,
-* clean separation between document structure and behavior.
+- extremely fast first render,
+- stable page layout,
+- good SEO,
+- resilience to JavaScript failures,
+- simpler architecture,
+- minimal runtime work,
+- clean separation between document structure and behavior.
 
 The page without JavaScript should still display:
 
-* branding,
-* player UI,
-* content,
-* explanations,
-* FAQ,
-* navigation.
+- branding,
+- player UI,
+- content,
+- explanations,
+- FAQ,
+- navigation.
 
 The audio controls themselves may require JavaScript for full functionality, but the page must never depend on JavaScript to render correctly.
 
@@ -266,28 +264,26 @@ Tailwind CSS will not be used.
 
 Reasons:
 
-* the site is small,
-* the design system is limited,
-* component-scoped CSS is easy to maintain,
-* Astro provides natural style encapsulation,
-* there is no need to introduce another build-time abstraction for styling.
+- the site is small,
+- the design system is limited,
+- component-scoped CSS is easy to maintain,
+- Astro provides natural style encapsulation,
+- there is no need to introduce another build-time abstraction for styling.
 
 Global CSS should remain small and contain only true site-wide concerns such as:
 
-* CSS custom properties,
-* resets,
-* typography defaults,
-* page background,
-* shared spacing or color tokens.
+- CSS custom properties,
+- resets,
+- typography defaults,
+- page background,
+- shared spacing or color tokens.
 
 Component-specific styles should live alongside their Astro components.
 
 Example:
 
 ```astro
-<button class="player">
-  Play
-</button>
+<button class="player">Play</button>
 
 <style>
   .player {
@@ -306,10 +302,10 @@ The application will use an `HTMLAudioElement`.
 Example concept:
 
 ```ts
-const audio = new Audio('/audio/white-noise.m4a')
+const audio = new Audio("/audio/white-noise.m4a");
 
-audio.loop = true
-audio.preload = 'auto'
+audio.loop = true;
+audio.preload = "auto";
 ```
 
 This is an intentional architectural decision.
@@ -318,10 +314,10 @@ Using a normal media element gives browsers the clearest possible indication tha
 
 This improves compatibility with:
 
-* background playback,
-* locked-screen playback,
-* media controls,
-* mobile browser lifecycle behavior.
+- background playback,
+- locked-screen playback,
+- media controls,
+- mobile browser lifecycle behavior.
 
 Continuous noise generation using `AudioContext` is intentionally avoided for the MVP because background execution of arbitrary JavaScript is less reliable on mobile browsers.
 
@@ -331,11 +327,11 @@ The app will ship with a pre-generated white-noise audio file.
 
 Preferred characteristics:
 
-* seamless loop,
-* compressed format suitable for mobile browsers,
-* no audible loop boundary,
-* reasonably short duration,
-* small file size.
+- seamless loop,
+- compressed format suitable for mobile browsers,
+- no audible loop boundary,
+- reasonably short duration,
+- small file size.
 
 A loop of roughly 10–60 seconds is sufficient for white noise because there is no meaningful repeating musical structure.
 
@@ -351,8 +347,8 @@ Potential format:
 
 MVP controls:
 
-* Play
-* Pause or Stop
+- Play
+- Pause or Stop
 
 The exact UX may use a single toggle button rather than separate controls.
 
@@ -384,10 +380,10 @@ Where available, the application should use the Media Session API.
 
 This can improve operating-system integration such as:
 
-* lock-screen media controls,
-* notification-area controls,
-* media metadata,
-* hardware media buttons.
+- lock-screen media controls,
+- notification-area controls,
+- media metadata,
+- hardware media buttons.
 
 Example metadata might include:
 
@@ -412,11 +408,11 @@ This is intentional.
 
 Safari can:
 
-* register service workers,
-* use Cache Storage,
-* provide offline-capable web applications,
-* play regular media,
-* continue media playback in the background where supported.
+- register service workers,
+- use Cache Storage,
+- provide offline-capable web applications,
+- play regular media,
+- continue media playback in the background where supported.
 
 Installation to the home screen is not required for these capabilities.
 
@@ -434,27 +430,27 @@ The application will use a service worker.
 
 After a successful initial visit, the following resources should be available from cache:
 
-* HTML,
-* CSS,
-* JavaScript,
-* icons,
-* manifest,
-* white-noise audio asset.
+- HTML,
+- CSS,
+- JavaScript,
+- icons,
+- manifest,
+- white-noise audio asset.
 
 The app should therefore remain usable when:
 
-* the user has no signal,
-* the user is in airplane mode,
-* the network is temporarily unavailable.
+- the user has no signal,
+- the user is in airplane mode,
+- the network is temporarily unavailable.
 
 The service worker should remain simple.
 
 There is no requirement for:
 
-* background sync,
-* push notifications,
-* complex runtime caching,
-* network mutations.
+- background sync,
+- push notifications,
+- complex runtime caching,
+- network mutations.
 
 ## 20. Service Worker Strategy
 
@@ -482,11 +478,11 @@ Offline playback should be tested explicitly.
 
 The site should include:
 
-* web app manifest,
-* application icons,
-* service worker,
-* theme metadata,
-* installable configuration where supported.
+- web app manifest,
+- application icons,
+- service worker,
+- theme metadata,
+- installable configuration where supported.
 
 However:
 
@@ -496,9 +492,9 @@ This distinction is important.
 
 Users should receive essentially the same core functionality whether they:
 
-* open the site normally in Safari or Chrome,
-* bookmark it,
-* install it to their home screen.
+- open the site normally in Safari or Chrome,
+- bookmark it,
+- install it to their home screen.
 
 ## 22. SEO
 
@@ -506,23 +502,23 @@ The page should use server-generated/static HTML for all meaningful content.
 
 Basic SEO requirements:
 
-* descriptive `<title>`,
-* useful meta description,
-* canonical URL,
-* semantic heading structure,
-* Open Graph metadata,
-* appropriate social preview image,
-* accessible text content,
-* structured data where genuinely useful.
+- descriptive `<title>`,
+- useful meta description,
+- canonical URL,
+- semantic heading structure,
+- Open Graph metadata,
+- appropriate social preview image,
+- accessible text content,
+- structured data where genuinely useful.
 
 Potential content topics:
 
-* white noise for babies,
-* baby sleep sounds,
-* how to use white noise,
-* whether white noise can run continuously,
-* offline white noise,
-* common usage questions.
+- white noise for babies,
+- baby sleep sounds,
+- how to use white noise,
+- whether white noise can run continuously,
+- offline white noise,
+- common usage questions.
 
 Content should remain genuinely useful and not become keyword-stuffed filler.
 
@@ -532,15 +528,15 @@ Accessibility should be considered from the beginning.
 
 Minimum requirements:
 
-* native `<button>` controls,
-* clear focus states,
-* keyboard operation,
-* sufficient contrast,
-* understandable labels,
-* large mobile tap targets,
-* reduced-motion support where appropriate,
-* visible playback state,
-* no essential information conveyed through color alone.
+- native `<button>` controls,
+- clear focus states,
+- keyboard operation,
+- sufficient contrast,
+- understandable labels,
+- large mobile tap targets,
+- reduced-motion support where appropriate,
+- visible playback state,
+- no essential information conveyed through color alone.
 
 The player should be operable with one hand and easy to use in poor lighting.
 
@@ -550,14 +546,14 @@ Performance is a core product feature.
 
 The application should aim for:
 
-* static HTML wherever possible,
-* near-zero client JavaScript outside the player,
-* minimal CSS,
-* no frontend framework runtime,
-* no unnecessary fonts,
-* no heavy third-party dependencies,
-* no blocking analytics scripts,
-* no unnecessary animations.
+- static HTML wherever possible,
+- near-zero client JavaScript outside the player,
+- minimal CSS,
+- no frontend framework runtime,
+- no unnecessary fonts,
+- no heavy third-party dependencies,
+- no blocking analytics scripts,
+- no unnecessary animations.
 
 The page should feel instant even on a mediocre mobile connection.
 
@@ -629,11 +625,11 @@ The application should be deployable as completely static output.
 
 Preferred hosting characteristics:
 
-* global CDN,
-* HTTPS,
-* immutable asset caching,
-* inexpensive or free hosting,
-* simple deployment.
+- global CDN,
+- HTTPS,
+- immutable asset caching,
+- inexpensive or free hosting,
+- simple deployment.
 
 Cloudflare is an obvious fit.
 
@@ -645,11 +641,11 @@ A sleep timer is a likely first enhancement after MVP.
 
 Possible options:
 
-* Continuous
-* 15 minutes
-* 30 minutes
-* 60 minutes
-* custom duration later
+- Continuous
+- 15 minutes
+- 30 minutes
+- 60 minutes
+- custom duration later
 
 This feature still does not require a frontend framework.
 
@@ -657,8 +653,8 @@ A possible internal state model:
 
 ```ts
 interface PlayerState {
-  playing: boolean
-  timerEndsAt: number | null
+  playing: boolean;
+  timerEndsAt: number | null;
 }
 ```
 
@@ -672,11 +668,11 @@ Do not add a frontend UI framework simply because the player gains a few additio
 
 Vanilla TypeScript remains appropriate for:
 
-* playback,
-* volume,
-* simple timers,
-* a few sound choices,
-* basic local preferences.
+- playback,
+- volume,
+- simple timers,
+- a few sound choices,
+- basic local preferences.
 
 A framework should only be introduced when UI complexity genuinely starts creating state-management or rendering problems.
 
@@ -690,9 +686,9 @@ one interactive island
 
 Possible island technologies include:
 
-* Preact,
-* Svelte,
-* React.
+- Preact,
+- Svelte,
+- React.
 
 The rest of the site should remain static Astro.
 
@@ -700,19 +696,19 @@ The rest of the site should remain static Astro.
 
 Potential future features, depending on user demand:
 
-* sleep timer,
-* brown noise,
-* pink noise,
-* rain,
-* fan sounds,
-* volume persistence,
-* remembered last sound,
-* install prompt,
-* basic local preferences,
-* shareable sound URLs,
-* localized versions of the site,
-* educational content,
-* additional SEO landing pages.
+- sleep timer,
+- brown noise,
+- pink noise,
+- rain,
+- fan sounds,
+- volume persistence,
+- remembered last sound,
+- install prompt,
+- basic local preferences,
+- shareable sound URLs,
+- localized versions of the site,
+- educational content,
+- additional SEO landing pages.
 
 Features requiring accounts or backend infrastructure should face a much higher bar.
 
@@ -786,21 +782,21 @@ Authentication
 
 The MVP is considered technically complete when:
 
-* The page renders fully as static HTML.
-* The visual design is polished on mobile.
-* The user can start and stop white noise.
-* Audio loops without an audible gap.
-* Playback survives screen lock on supported target browsers.
-* Playback works in normal iOS Safari.
-* The application works offline after the initial load.
-* The white-noise asset is explicitly available offline.
-* The service worker updates safely between releases.
-* The page includes valid SEO metadata.
-* The page has a valid PWA manifest.
-* Lock-screen / Media Session controls work where supported.
-* Core controls are keyboard-accessible.
-* The site performs well on a real mobile device.
-* No unnecessary JavaScript framework is shipped.
+- The page renders fully as static HTML.
+- The visual design is polished on mobile.
+- The user can start and stop white noise.
+- Audio loops without an audible gap.
+- Playback survives screen lock on supported target browsers.
+- Playback works in normal iOS Safari.
+- The application works offline after the initial load.
+- The white-noise asset is explicitly available offline.
+- The service worker updates safely between releases.
+- The page includes valid SEO metadata.
+- The page has a valid PWA manifest.
+- Lock-screen / Media Session controls work where supported.
+- Core controls are keyboard-accessible.
+- The site performs well on a real mobile device.
+- No unnecessary JavaScript framework is shipped.
 
 ## 34. Core Decision
 

@@ -1,0 +1,72 @@
+<section class="benefits section-shell" aria-labelledby="benefits-title">
+  <div class="section-heading">
+    <p class="eyebrow">Made for the small hours</p>
+    <h2 id="benefits-title">Nothing between you and a steadier room.</h2>
+  </div>
+  <div class="benefits__list">
+    <article>
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M6 17h4l3-8 5 15 3-7h5" />
+      </svg>
+      <h3>Continuous sound</h3>
+      <p>
+        The same even sound repeats without songs, voices, or sudden changes.
+      </p>
+    </article>
+    <article>
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M10 21a6 6 0 0 1 1-11.9A8 8 0 0 1 26 13a4.5 4.5 0 0 1-1 8H10Zm3 4h9" />
+      </svg>
+      <h3>Ready offline</h3>
+      <p>
+        Visit once online, then return when the signal is weak or unavailable.
+      </p>
+    </article>
+    <article>
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M23.5 21A10 10 0 0 1 11 8.5 10 10 0 1 0 23.5 21Z" />
+      </svg>
+      <h3>Stays out of the way</h3>
+      <p>No account, tracking, pop-ups, or bedtime setup. Just press play.</p>
+    </article>
+  </div>
+</section>
+
+<style>
+  .benefits {
+    padding-block: clamp(4.5rem, 10vw, 8rem);
+    border-block: 1px solid var(--line);
+  }
+  .benefits__list {
+    display: grid;
+    gap: 2.5rem;
+    margin-top: 3.5rem;
+  }
+  article {
+    max-width: 25rem;
+  }
+  svg {
+    width: 2rem;
+    margin-bottom: 1.5rem;
+    fill: none;
+    stroke: var(--warm);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.5;
+  }
+  h3 {
+    margin: 0 0 0.65rem;
+    font-size: 1rem;
+    font-weight: 650;
+  }
+  p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.94rem;
+  }
+  @media (min-width: 680px) {
+    .benefits__list {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

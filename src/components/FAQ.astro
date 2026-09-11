@@ -1,0 +1,87 @@
+<section class="faq section-shell" aria-labelledby="faq-title">
+  <div class="section-heading">
+    <p class="eyebrow">Good to know</p>
+    <h2 id="faq-title">Common questions</h2>
+  </div>
+  <div class="faq__list">
+    <details>
+      <summary>Can white noise keep playing when my phone is locked?</summary>
+      <p>
+        Usually, yes. This page uses normal media playback so supported browsers
+        can keep it playing with the screen locked. Your device settings may
+        still affect playback.
+      </p>
+    </details>
+    <details>
+      <summary>Will it work without an internet connection?</summary>
+      <p>
+        Yes, after one successful online visit. Keep this page bookmarked, and
+        the player and sound will be available from your browser's offline
+        storage.
+      </p>
+    </details>
+    <details>
+      <summary>How loud should it be?</summary>
+      <p>
+        Use the lowest effective volume and keep the device well away from the
+        cot. Sound levels vary between phones and speakers, so check the volume
+        from where your baby sleeps.
+      </p>
+    </details>
+    <details>
+      <summary>Do I need to install an app?</summary>
+      <p>
+        No. It works in your browser. On supported devices, you can add it to
+        your home screen for quicker access.
+      </p>
+    </details>
+  </div>
+</section>
+
+<style>
+  .faq {
+    display: grid;
+    gap: 2.5rem;
+    padding-block: clamp(4.5rem, 10vw, 8rem);
+    border-top: 1px solid var(--line);
+  }
+  .faq__list {
+    border-top: 1px solid var(--line);
+  }
+  details {
+    border-bottom: 1px solid var(--line);
+  }
+  summary {
+    position: relative;
+    padding: 1.4rem 2.5rem 1.4rem 0;
+    color: var(--moon);
+    font-weight: 600;
+    list-style: none;
+    cursor: pointer;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary::after {
+    position: absolute;
+    top: 1.3rem;
+    right: 0.25rem;
+    color: var(--warm);
+    font-size: 1.2rem;
+    content: "+";
+  }
+  details[open] summary::after {
+    content: "−";
+  }
+  details p {
+    max-width: 38rem;
+    margin: -0.25rem 0 1.5rem;
+    color: var(--muted);
+  }
+  @media (min-width: 720px) {
+    .faq {
+      grid-template-columns: minmax(13rem, 0.7fr) minmax(24rem, 1.3fr);
+      align-items: start;
+    }
+  }
+</style>

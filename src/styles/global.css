@@ -1,0 +1,89 @@
+:root {
+  --night: #0b0e1c;
+  --night-soft: #12162b;
+  --dusk: #242746;
+  --moon: #f5efd9;
+  --mist: #cbcce0;
+  --muted: #9699b5;
+  --glow: #d9c9ff;
+  --warm: #f4d58d;
+  --line: rgb(213 207 241 / 14%);
+  font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  color: var(--moon);
+  background: var(--night);
+}
+
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  background: var(--night);
+}
+body {
+  margin: 0;
+  min-width: 20rem;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 50% 5%, rgb(74 67 123 / 24%), transparent 32rem),
+    var(--night);
+  color: var(--moon);
+  font-size: 1rem;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+button,
+audio {
+  font: inherit;
+}
+button {
+  touch-action: manipulation;
+}
+a {
+  color: inherit;
+}
+:focus-visible {
+  outline: 3px solid var(--warm);
+  outline-offset: 4px;
+}
+.section-shell {
+  width: min(100% - 2rem, 68rem);
+  margin-inline: auto;
+}
+.section-heading {
+  max-width: 34rem;
+}
+.section-heading h2 {
+  margin: 0;
+  font-family:
+    Iowan Old Style,
+    Baskerville,
+    "Times New Roman",
+    serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+.eyebrow {
+  margin: 0 0 0.8rem;
+  color: var(--warm);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

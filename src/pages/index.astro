@@ -1,17 +1,104 @@
 ---
-
+import AudioPlayer from "../components/AudioPlayer.astro";
+import Benefits from "../components/Benefits.astro";
+import FAQ from "../components/FAQ.astro";
+import Footer from "../components/Footer.astro";
+import Hero from "../components/Hero.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Baby Sleep White Noise — Calm, continuous sleep sound"
+  description="Play gentle, continuous white noise for baby sleep. Fast, private, and available offline after your first visit."
+>
+  <main>
+    <Hero>
+      <AudioPlayer />
+    </Hero>
+    <Benefits />
+
+    <section
+      class="guidance section-shell"
+      id="how-to-use"
+      aria-labelledby="guidance-title"
+    >
+      <div class="section-heading">
+        <p class="eyebrow">Use it gently</p>
+        <h2 id="guidance-title">A quiet part of the bedtime routine</h2>
+      </div>
+      <div class="guidance__steps">
+        <p>
+          <strong>Keep it low.</strong> Use the lowest volume that masks
+          distracting sounds.
+        </p>
+        <p>
+          <strong>Give it space.</strong> Keep the phone or speaker well away
+          from the cot.
+        </p>
+        <p>
+          <strong>Listen again.</strong> Check the sound where your baby sleeps,
+          not beside the speaker.
+        </p>
+      </div>
+      <p class="guidance__note">
+        White noise is not medical care. The{" "}
+        <a href="https://publications.aap.org/pediatrics/article/152/5/e2023063752/194468/Preventing-Excessive-Noise-Exposure-in-Infants">
+          American Academy of Pediatrics
+        </a>{" "}
+        advises keeping sleep machines as far away as possible, setting the
+        volume as low as possible, and limiting use.
+      </p>
+    </section>
+
+    <FAQ />
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .guidance {
+    display: grid;
+    gap: 2.5rem;
+    padding-block: clamp(4.5rem, 10vw, 8rem);
+  }
+  .guidance__steps {
+    display: grid;
+    gap: 1px;
+    border: 1px solid var(--line);
+    border-radius: 1.5rem;
+    overflow: hidden;
+    background: var(--line);
+  }
+  .guidance__steps p {
+    margin: 0;
+    padding: 1.35rem 1.5rem;
+    background: var(--night-soft);
+    color: var(--mist);
+  }
+  .guidance__steps strong {
+    display: block;
+    margin-bottom: 0.25rem;
+    color: var(--moon);
+    font-weight: 650;
+  }
+  .guidance__note {
+    max-width: 44rem;
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+  .guidance__note a {
+    color: var(--mist);
+    text-underline-offset: 0.2rem;
+  }
+  @media (min-width: 720px) {
+    .guidance {
+      grid-template-columns: minmax(13rem, 0.7fr) minmax(24rem, 1.3fr);
+      align-items: start;
+    }
+    .guidance__note {
+      grid-column: 2;
+    }
+  }
+</style>
