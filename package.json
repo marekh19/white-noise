@@ -19,10 +19,10 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
-    "@types/node": "^22.20.2",
+    "@types/node": "^26.6.1",
     "prettier": "3.9.6",
     "prettier-plugin-astro": "1.0.0",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "wrangler": "^4.130.0"
   },
   "engines": {
