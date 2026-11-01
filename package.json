@@ -15,15 +15,15 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^7.4.2"
+    "astro": "^7.4.4"
   },
   "devDependencies": {
-    "@types/node": "^26.6.1",
+    "@types/node": "^26.6.6",
     "@astrojs/check": "^0.9.12",
     "prettier": "3.9.10",
-    "prettier-plugin-astro": "1.1.1",
+    "prettier-plugin-astro": "1.1.2",
     "typescript": "^6.0.3",
-    "wrangler": "^4.151.3"
+    "wrangler": "^4.155.0"
   },
   "engines": {
     "node": ">=24.20.0"
