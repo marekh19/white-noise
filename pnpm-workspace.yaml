@@ -2,3 +2,11 @@ allowBuilds:
   esbuild: true
   sharp: true
   workerd: true
+
+# @astrojs/astro2tsx pins @emnapi/core 1.11.3 but omits the matching @emnapi/runtime,
+# so pnpm can pair it with rolldown's 2.0 beta runtime and crash `astro check`.
+# Remove when astro2tsx declares @emnapi/runtime itself.
+packageExtensions:
+  "@astrojs/astro2tsx@0.1.3":
+    dependencies:
+      "@emnapi/runtime": 1.11.3
